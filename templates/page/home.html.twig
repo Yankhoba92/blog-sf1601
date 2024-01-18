@@ -23,8 +23,8 @@
 				<p>Publié le
 					{{ item.createdAt|date("j F Y", "Europe/Paris") }}</p>
 				{# Cette route est un exemple "home" n'est pas censer rediriger vers post #}
-				<a href={{ path('home', {'id': item.id} )}} class="btn btn-dark">
-					Voir <i class="bi bi-arrow-right-circle"></i>
+				<a href="{{ path('show', {'slug': item.slug}) }}" class="btn btn-dark">
+    				Voir <i class="bi bi-arrow-right-circle"></i>
 				</a>
 
 			</div>

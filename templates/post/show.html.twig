@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{# {% block title %}Modifier l'article : {{post.{{ variable|title }}}} {% endblock %} #}
+
+{% block body %}
+    
+    <div class="card" style="width: 18rem;">
+        <img src={{post.image}} class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <p class="card-text">{{ post.title }}</p>
+        <a href="{{ path('post_edit', {'slug': post.slug}) }}" class="btn btn-primary">Edit</a>
+    </div>
+
+
+
+{% endblock %}

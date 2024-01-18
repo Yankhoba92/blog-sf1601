@@ -31,13 +31,13 @@ class Post
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column]
-    private ?bool $isPublished = false;
+    #[ORM\Column ]
+    private ?bool $ispublished = false;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updated_at = null;
 
     #[ORM\ManyToOne(inversedBy: 'posts')]
@@ -47,7 +47,7 @@ class Post
     #[ORM\ManyToOne(inversedBy: 'posts')]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class)]
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
     public function __construct()
@@ -120,14 +120,14 @@ class Post
         return $this;
     }
 
-    public function isIsPublished(): ?bool
+    public function isIspublished(): ?bool
     {
-        return $this->isPublished;
+        return $this->ispublished;
     }
 
-    public function setIsPublished(bool $isPublished): static
+    public function setIspublished(bool $ispublished): static
     {
-        $this->isPublished = $isPublished;
+        $this->ispublished = $ispublished;
 
         return $this;
     }
@@ -149,7 +149,7 @@ class Post
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): static
+    public function setUpdatedAt(?\DateTimeInterface $updated_at): static
     {
         $this->updated_at = $updated_at;
 
@@ -161,9 +161,9 @@ class Post
         return $this->author;
     }
 
-    public function setAuthor(?User $Author): static
+    public function setAuthor(?User $author): static
     {
-        $this->author = $Author;
+        $this->author = $author;
 
         return $this;
     }

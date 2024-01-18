@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la categorie : {{post.title}} {% endblock %}
+
+{% block body %}
+{{ dump(post.image) }}
+    <h1>Modifier la categorie {{post.title}} </h1>
+    
+    
+    {{ form (editForm)}}
+    <p>
+        TODO: Add form to add new post
+    </p>
+
+{% endblock %}

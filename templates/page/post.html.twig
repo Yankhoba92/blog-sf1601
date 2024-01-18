@@ -1,0 +1,14 @@
+{# templates/pos_list.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Post{% endblock %}
+
+{% block body %}
+    <h1>Liste des Post</h1>
+    <ul>
+        {% for post in posts %}
+            <li>{{ post.title }} - {{ post.content }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

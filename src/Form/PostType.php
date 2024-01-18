@@ -5,8 +5,11 @@ namespace App\Form;
 use App\Entity\Category;
 use App\Entity\Post;
 use App\Entity\User;
+use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,13 +19,8 @@ class PostType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('slug')
-            ->add('extract')
             ->add('content')
-            ->add('image')
-            ->add('ispublished')
-            ->add('created_at')
-            ->add('updated_at')
+            ->add('ispublished', BooleanType::class)
             ->add('author', EntityType::class, [
                 'class' => User::class,
 'choice_label' => 'id',
@@ -31,7 +29,13 @@ class PostType extends AbstractType
                 'class' => Category::class,
 'choice_label' => 'id',
             ])
+            ->add('image', FileType::class, [
+                'mapped' =>false,
+            ])
+            ->add('Enregistrer', SubmitType::class)
+                    
         ;
+        
     }
 
     public function configureOptions(OptionsResolver $resolver): void
